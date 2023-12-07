@@ -1,0 +1,50 @@
+{
+    "fuel_name": "gregtech:gt.reactorUraniumQuad",
+    "cooler_name": "gregtech:gt.60k_NaK_Coolantcell",
+    "cooler_durability_threshold": 0.35,
+    "reserved_available_cooler_threshold": 14,
+    "design": "FFCFFCFFC\nCFFFFCFFF\nFFFCFFFCF\nFCFFFCFFF\nFFFCFFFFC\nCFFCFFCFF",
+    "components": {
+        "energy_station": {
+            "type": "redstone",
+            "address_prefix": "3d8",
+            "direction": "TOP"
+        },
+        "temperature_monitor": {
+            "type": "redstone",
+            "address_prefix": "ea4",
+            "direction": "TOP"
+        },
+        "reactor_switch": {
+            "type": "redstone",
+            "address_prefix": "73e",
+            "direction": "TOP"
+        },
+        "buzzer": {
+            "type": "redstone",
+            "address_prefix": "73e",
+            "direction": "EAST"
+        },
+        "reactor_bin": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "SOUTH"
+        },
+        "chest_cooler": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "BOTTOM"
+        },
+        "chest_damaged_cooler": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "WEST"
+        },
+        "chest_fuel": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "EAST"
+        }
+        
+    }
+}
