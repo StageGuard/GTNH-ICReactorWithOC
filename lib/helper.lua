@@ -1,5 +1,4 @@
 local component = require("component")
-local JSON = (loadfile "lib/JSON.lua")()
 
 local sides = {
     BOTTOM = 0,
@@ -28,7 +27,7 @@ local function printTable(table)
     end
 end
 
-function isNullOrEmpty(table)
+local function isNullOrEmpty(table)
     if table == nil then
         return true;
     end
@@ -100,24 +99,47 @@ local function getTransposerSide(t, side, name)
             if count == nil then
                 count = 1
             end
-            --if targetSlot == nil then
-            --    targetSlot = findEmptySlot(t.getAllStacks(targetSide).getAll())
-            --end
-            -- sourceSide, sinkSide, count, sourceSlot, sinkSlot
             if targetSlot == nil then
-                t.transferItem(side, target.side, count, sourceSlot)
+                return t.transferItem(side, target.side, count, sourceSlot)
             else
-                t.transferItem(side, target.side, count, sourceSlot, targetSlot)
+                return t.transferItem(side, target.side, count, sourceSlot, targetSlot)
+            end
+        end,
+        findFirstStackableSlot = function(item)
+            local slots = t.getAllStacks(side).getAll()
+            local isItemInvalid = isNullOrEmpty(item)
+            local firstEmpty, found = nil, nil
+
+            for sk, sv in pairs(slots) do
+                if isItemInvalid then
+                    if isNullOrEmpty(sv) then return sk end
+                    goto continue
+                end
+
+                if isNullOrEmpty(sv) then
+                    if firstEmpty == nil then firstEmpty = sk end
+                    goto continue
+                end
+
+                if tostring(sv.name) ~= tostring(item.name) then goto continue end
+                if sv.damage ~= item.damage then goto continue end
+                if sv.label ~= item.label then goto continue end
+                if sv.tag ~= item.tag then goto continue end
+
+                if sv.maxSize - sv.size < item.size then goto continue end
+                
+                found = sk
+                break
+                :: continue ::
+            end
+
+            if found ~= nil then
+                return found
+            else
+                return firstEmpty
             end
         end,
         name = name,
-        findFirstEmptySlot = function ()
-            local allItems = t.getAllStacks(side).getAll()
-            for index, item in ipairs(allItems) do
-                if item.name == nil then return index end
-            end
-            return nil
-        end,
     }
 end
 
@@ -156,18 +178,10 @@ local function proxyRedstoneController(componentTable)
     return CONTROLLER
 end
 
-local function loadConfig(name)
-    local cfgFile = io.open(name, "r")
-    if cfgFile == nil then
-        return nil
-    end
-    local parsed = JSON:decode(cfgFile:read("*a"))
-    cfgFile:close()
-    return parsed
-end
 
-local function renderReactorSlot(index)
-    return "(" .. tostring((index // 9) + 1) .. ", " .. tostring(index % 9) .. ")"
+
+local function renderReactorSlot(name, index)
+    return tostring(name) .. "(" .. tostring((index // 9) + 1) .. ", " .. tostring(index % 9) .. ")"
 end
 
 return {
@@ -179,6 +193,5 @@ return {
     DIRECTION = sides,
     proxyTransposer = proxyTransposer,
     proxyRedstoneController = proxyRedstoneController,
-    loadConfig = loadConfig,
     renderReactorSlot = renderReactorSlot,
 }
