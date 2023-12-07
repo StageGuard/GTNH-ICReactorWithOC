@@ -13,6 +13,16 @@ local function startsWith(text, prefix)
     return text:find(prefix, 1, true) == 1
 end
 
+local function isNullOrEmpty(table)
+    if table == nil then
+        return true;
+    end
+    for i, v in pairs(table) do
+        return false;
+    end
+    return true;
+end
+
 local function printTable(table)
     if table == nil then
         print("nil table")
@@ -25,16 +35,6 @@ local function printTable(table)
     for k, v in pairs(table) do
         print(k, v)
     end
-end
-
-local function isNullOrEmpty(table)
-    if table == nil then
-        return true;
-    end
-    for i, v in pairs(table) do
-        return false;
-    end
-    return true;
 end
 
 ---
