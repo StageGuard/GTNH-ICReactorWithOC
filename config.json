@@ -1,34 +1,42 @@
 {
-    "fuel_name": "gregtech:gt.reactorUraniumQuad",
-    "cooler_name": "gregtech:gt.60k_NaK_Coolantcell",
-    "cooler_durability_threshold": 0.35,
-    "reserved_available_cooler_threshold": 14,
-    "design": "FFCFFCFFC\nCFFFFCFFF\nFFFCFFFCF\nFCFFFCFFF\nFFFCFFFFC\nCFFCFFCFF",
+    "reactors": [
+        {
+            "name": "UraniumQuadReactor#1",
+            "component_refs": {
+                "bin": "reactor_bin1",
+                "temperature_monitor": "temp_mon1",
+                "switch": "reactor_switch1"
+            },
+            "fuel_name": "gregtech:gt.reactorUraniumQuad",
+            "cooler_name": "gregtech:gt.60k_NaK_Coolantcell",
+            "cooler_durability_threshold": 0.05,
+            "reserved_available_cooler_threshold": 14,
+            "design": "FFCFFCFFC\nCFFFFCFFF\nFFFCFFFCF\nFCFFFCFFF\nFFFCFFFFC\nCFFCFFCFF"
+        },
+        {
+            "name": "UraniumQuadReactor#2",
+            "component_refs": {
+                "bin": "reactor_bin2",
+                "temperature_monitor": "temp_mon2",
+                "switch": "reactor_switch2"
+            },
+            "fuel_name": "gregtech:gt.reactorUraniumQuad",
+            "cooler_name": "gregtech:gt.60k_NaK_Coolantcell",
+            "cooler_durability_threshold": 0.05,
+            "reserved_available_cooler_threshold": 14,
+            "design": "FFCFFCFFC\nCFFFFCFFF\nFFFCFFFCF\nFCFFFCFFF\nFFFCFFFFC\nCFFCFFCFF"
+        }
+    ],
     "components": {
         "energy_station": {
             "type": "redstone",
             "address_prefix": "3d8",
             "direction": "TOP"
         },
-        "temperature_monitor": {
-            "type": "redstone",
-            "address_prefix": "ea4",
-            "direction": "TOP"
-        },
-        "reactor_switch": {
-            "type": "redstone",
-            "address_prefix": "73e",
-            "direction": "TOP"
-        },
         "buzzer": {
             "type": "redstone",
-            "address_prefix": "73e",
+            "address_prefix": "216",
             "direction": "EAST"
-        },
-        "reactor_bin": {
-            "type": "transposer",
-            "address_prefix": "61d",
-            "direction": "SOUTH"
         },
         "chest_cooler": {
             "type": "transposer",
@@ -44,6 +52,40 @@
             "type": "transposer",
             "address_prefix": "61d",
             "direction": "EAST"
+        },
+
+
+        
+        "reactor_bin1": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "SOUTH"
+        },
+        "temp_mon1": {
+            "type": "redstone",
+            "address_prefix": "33b",
+            "direction": "SOUTH"
+        },
+        "reactor_switch1": {
+            "type": "redstone",
+            "address_prefix": "8b2",
+            "direction": "SOUTH"
+        },
+
+        "reactor_bin2": {
+            "type": "transposer",
+            "address_prefix": "61d",
+            "direction": "TOP"
+        },
+        "temp_mon2": {
+            "type": "redstone",
+            "address_prefix": "33b",
+            "direction": "TOP"
+        },
+        "reactor_switch2": {
+            "type": "redstone",
+            "address_prefix": "8b2",
+            "direction": "TOP"
         }
         
     }
