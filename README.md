@@ -94,6 +94,18 @@ GTNH 使用 OpenComputers mod 全自动控制工业核电，有以下功能：
         },
         ...
     ],
+    // 交互组件信息
+    //
+    // address_prefix 为 OC 方块地址前缀
+    //
+    // direction 为交互组件相对于 OC 方块的方向
+    // 可填 EAST, WEST, SOUTH, NORTH, TOP, BOTTOM
+    //
+    // type 为交互组件贴的 OC 方块类型
+    // redstone 是红石 I/O 端口， transposer 是转运器
+    // 可以在 OC 电脑里输入 components 命令查看你的 OC 网络都有什么组件
+
+    // 你需要修改每一个交互组件的 address_prefix 和 direction，别改 type！
     "components": {
         // 能量存储站
         "energy_station": {
