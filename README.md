@@ -136,7 +136,7 @@ GTNH 使用 OpenComputers mod 全自动控制工业核电，有以下功能：
             "type": "transposer",
             "address_prefix": "61d",
             "direction": "EAST"
-        }
+        },
 
 
         // 第一个核反应堆的组件
